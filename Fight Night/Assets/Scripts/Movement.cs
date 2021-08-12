@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float speed;
+    public float speed = 6.0f;
     public float jumpForce;
     private float moveInput;
     
@@ -44,13 +44,12 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.position += Vector3.right * speed * Time.fixedDeltaTime;
+            transform.position += Vector3.right * speed * Time.deltaTime;
             
         }
-        
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.position += Vector3.left * speed * Time.fixedDeltaTime;
+            transform.position += Vector3.left * speed * Time.deltaTime;
         }
 
         // Jumps //
@@ -65,7 +64,6 @@ public class Movement : MonoBehaviour
             rb.velocity = Vector3.up * jumpForce;
             extraJumps--;
         }
-        
         else if (Input.GetKeyDown(KeyCode.UpArrow) && extraJumps == 0 && isGrounded == true)
         {
             rb.velocity = Vector3.up * jumpForce;
